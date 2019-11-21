@@ -82,7 +82,8 @@ class RegisterController extends Controller
             'gender' => $data['gender'],
             'address'=> $data['address'],
             'photo' => $file,
-            'dateofbirth' => $data['dateofbirth']
+            'dateofbirth' => $data['dateofbirth'],
+            'isAdmin' => '1'
         ]);
     }
 }

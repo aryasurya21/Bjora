@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->longText('address')->nullable()->default('');
             $table->string('photo', 100)->nullable()->default('');
             $table->date('dateofbirth')->nullable();
+            $table->integer('isAdmin');
             $table->rememberToken();
             $table->timestamps();
         });
