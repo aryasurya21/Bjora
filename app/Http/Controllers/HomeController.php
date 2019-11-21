@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Question;
 class HomeController extends Controller
 {
     /**
@@ -23,6 +23,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $questions = \DB::table('questions')
+                    ->join('users','questions.id','=','users.id')
+                    ->join('topics','questions.topic_id','=','topics.topic_id')
+                    ->select('questions.*','users.name','topics.topic_name','users.photo')
+                    ->orderByRaw('questions.question_id')
+                    ->paginate(3);
+
+        return view('home',compact('questions'));
     }
 }

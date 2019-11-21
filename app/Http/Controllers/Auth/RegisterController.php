@@ -62,7 +62,7 @@ class RegisterController extends Controller
     public function uploadFile(){
         $request = \Request::capture();
         $name = $request->file('photo')->getClientOriginalName();
-        $file = $request->file('photo')->storeAs('/storage/app/resources/images',$name);
+        $file = $request->file('photo')->storeAs('public/images',$name);
         return $file;
     }
 
