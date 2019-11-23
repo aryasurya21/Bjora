@@ -13,7 +13,7 @@
                 <div class="card">
                     <div class="card-header">{{ $question->topic_name }}</div>
                     <div class="card-body">
-                        <img src="{{ $question->photo }}" alt="Profile_Picture" width="30px" height="40px">
+                        <img src="{{ asset('storage/images/'.$question->photo) }}" alt="Profile_Picture" width="60px" height="60px">
                         <div class="card-title">{{ $question->question_title }}</div>
                         <div class="card-text">{{ $question->name }}</div>
                         <div class="class-text">{{ $question->created_at }}</div>

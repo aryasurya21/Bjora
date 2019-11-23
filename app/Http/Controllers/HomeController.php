@@ -27,8 +27,9 @@ class HomeController extends Controller
                     ->join('users','questions.id','=','users.id')
                     ->join('topics','questions.topic_id','=','topics.topic_id')
                     ->select('questions.*','users.name','topics.topic_name','users.photo')
+                    ->where('question_status','=','1')
                     ->orderByRaw('questions.question_id')
-                    ->paginate(3);
+                    ->paginate(10);
 
         return view('home',compact('questions'));
     }

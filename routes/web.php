@@ -21,3 +21,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/AddQuestion','QuestionController@addQuestion')->name('addquestion');
 Route::post('/home','QuestionController@insertQuestion')->name('insertquestion');
+Route::get('/DisplayQuestion','QuestionController@displayQuestion')->name('displayquestion');
+Route::get('/UpdateQuestion/{questionid}','QuestionController@updateQuestion')->name('updatequestion');
+Route::get('/DeleteQuestion/{questionid}','QuestionController@deleteQuestion')->name('deletequestion');
+Route::post('/EditQustion','QuestionController@editQuestion')->name('editquestion');
+Route::get('/Answers/{questionid}','AnswerController@displayAnswer')->name('displayanswer');
+

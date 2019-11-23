@@ -28,7 +28,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/login';
 
     /**
      * Create a new controller instance.
@@ -61,9 +61,9 @@ class RegisterController extends Controller
 
     public function uploadFile(){
         $request = \Request::capture();
-        $name = $request->file('photo')->getClientOriginalName();
-        $file = $request->file('photo')->storeAs('public/images',$name);
-        return $file;
+        $name = uniqid().$request->file('photo')->getClientOriginalName();
+        $request->photo->move(storage_path('app/public/images'),$name);
+        return $name;
     }
 
     /**
