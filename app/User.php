@@ -47,6 +47,16 @@ class User extends Authenticatable
         return $this->hasMany('App\Answer','id','id');
     }
 
+    public function message()
+    {
+        return $this->belongsToMany('App\Message', 'receiver_id', 'id');
+    }
+
+    public function sent_messages()
+    {
+        return $this->hasMany('App\Message','sender_id');
+    }
+
     //for manual register user in adduser
     public static $registerRules = [
         'name' => ['required', 'string', 'max:100'],

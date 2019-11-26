@@ -69,10 +69,9 @@
                         </form>
                         @endif
                     @endguest
-
                 </div>
-                </div>
-                <br/>
+            </div>
+            <br/>
             {{-- <div style="width:100%; display:flex; justify-content:center;">{{$myquestions->links()}}</div> --}}
         </div>
     </div>

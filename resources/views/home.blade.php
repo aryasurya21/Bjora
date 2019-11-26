@@ -24,7 +24,7 @@
                     <div class="card-body">
                         <img src="{{ asset('storage/images/'.$question->photo) }}" alt="Profile_Picture" width="60px" height="60px">
                         <div class="card-title">{{ $question->question_title }}</div>
-                        <div class="card-text">{{ $question->name }}</div>
+                        <div class="card-text"><a href="/DisplayProfile/{{$question->id}}">{{ $question->name }}</a></div>
                         <div class="class-text">{{ $question->created_at }}</div>
                         <a href="/DisplayAnswer/{{$question->question_id}}" class="btn btn-danger">Answer</a>
                     </div>

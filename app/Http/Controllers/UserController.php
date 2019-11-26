@@ -93,4 +93,10 @@ class UserController extends Controller
 
         return back();
     }
+
+    public function showProfile($userid)
+    {
+        $user = User::where('users.id','=',$userid)->first();
+        return view('myprofile',compact('user',$user));
+    }
 }

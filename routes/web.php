@@ -45,3 +45,6 @@ Route::post('/EditTopic','TopicController@editTopic')->name('edittopic');
 Route::get('/DeleteTopic/{topicid}','TopicController@deleteTopic')->name('deletetopic');
 Route::get('/AddTopic','TopicController@addTopic');
 Route::post('/InsertTopic','TopicController@insertTopic')->name('inserttopic');
+
+Route::get('/DisplayProfile/{userid}','UserController@showProfile')->name('displayprofile');
+Route::post('/SendMessage','MessageController@sendMessage')->name('sendmessage');
