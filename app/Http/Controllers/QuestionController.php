@@ -90,6 +90,28 @@ class QuestionController extends Controller
         return view('myquestion',compact('myquestions'));
     }
 
+    public function displayAllQuestion()
+    {
+        $questions = \DB::table('questions')
+                     ->join('users','users.id','=','questions.id')
+                     ->join('topics','topics.topic_id','=','questions.topic_id')
+                     ->select('questions.*','users.*','topics.*')
+                     ->distinct()
+                     ->orderByRaw('questions.question_id')
+                     ->get();
+
+        return view('listquestion',compact('questions',$questions));
+    }
+
+    public function closeQuestion($questionid)
+    {
+        \DB::table('questions')
+             ->where('questions.question_id','=',$questionid)
+             ->update(['questions.question_status' => '0']);
+
+        return back();
+    }
+
     public function deleteQuestion($questionid)
     {
         $question = Question::where('question_id',$questionid);

@@ -18,12 +18,30 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
-Route::get('/AddQuestion','QuestionController@addQuestion')->name('addquestion');
 Route::post('/home','QuestionController@insertQuestion')->name('insertquestion');
-Route::get('/DisplayQuestion','QuestionController@displayQuestion')->name('displayquestion');
-Route::get('/UpdateQuestion/{questionid}','QuestionController@updateQuestion')->name('updatequestion');
-Route::get('/DeleteQuestion/{questionid}','QuestionController@deleteQuestion')->name('deletequestion');
-Route::post('/EditQustion','QuestionController@editQuestion')->name('editquestion');
-Route::get('/Answers/{questionid}','AnswerController@displayAnswer')->name('displayanswer');
 
+Route::get('/DisplayQuestion','QuestionController@displayQuestion')->name('displayquestion');
+Route::get('/ListQuestion','QuestionController@displayAllQuestion')->name('displayallquestion');
+Route::get('/AddQuestion','QuestionController@addQuestion')->name('addquestion');
+Route::get('/UpdateQuestion/{questionid}','QuestionController@updateQuestion')->name('updatequestion');
+Route::post('/EditQustion','QuestionController@editQuestion')->name('editquestion');
+Route::get('/DeleteQuestion/{questionid}','QuestionController@deleteQuestion')->name('deletequestion');
+Route::get('/CloseQuestion/{questionid}','QuestionController@closeQuestion');
+
+Route::get('/DisplayAnswer/{questionid}','AnswerController@displayAnswer')->name('displayanswer');
+Route::post('/AddAnswer','AnswerController@addAnswer')->name('addanswer');
+Route::get('/DeleteAnswer/{answerid}','AnswerController@deleteAnswer');
+
+Route::get('/ListUser','UserController@displayAll')->name('displayalluser');
+Route::post('/InserUser','UserController@insertUser')->name('insertuser');
+Route::get('/AddUser','UserController@addUser');
+Route::post('/EditUser','UserController@editUser')->name('edituser');
+Route::get('/UpdateUser/{userid}','UserController@updateUser')->name('updateuser');
+Route::get('/DeleteUser/{userid}','UserController@deleteUser')->name('deleteuser');
+
+Route::get('/ListTopic','TopicController@displayAll')->name('displayalltopic');
+Route::get('/UpdateTopic/{topicid}','TopicController@updateTopic')->name('updatetopic');
+Route::post('/EditTopic','TopicController@editTopic')->name('edittopic');
+Route::get('/DeleteTopic/{topicid}','TopicController@deleteTopic')->name('deletetopic');
+Route::get('/AddTopic','TopicController@addTopic');
+Route::post('/InsertTopic','TopicController@insertTopic')->name('inserttopic');

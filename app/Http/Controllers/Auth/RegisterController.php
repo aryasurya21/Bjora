@@ -54,7 +54,7 @@ class RegisterController extends Controller
             'password' => ['required', 'string', 'min:6', 'confirmed','alpha_num'],
             'gender' => ['required','in:male,female'],
             'address' => ['required'],
-            'photo' => ['required', 'mimes:jpeg,png,jpg,gif,svg'],
+            'photo' => ['required', 'mimes:jpeg,png,jpg'],
             'dateofbirth' => ['required','date_format:Y-m-d']
         ]);
     }

@@ -11,10 +11,10 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
 
     /**
      * Show the application dashboard.
@@ -32,5 +32,16 @@ class HomeController extends Controller
                     ->paginate(10);
 
         return view('home',compact('questions'));
+    }
+
+    public function searchQuestionName(Request $r)
+    {
+        if($r->ajax())
+        {
+            $results = "";
+            $questions = \DB::table('questions')
+                         ->where('question_title','LIKE','%'.$r->keyword.'%')
+                         ->get();
+        }
     }
 }

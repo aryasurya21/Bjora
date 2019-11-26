@@ -21,7 +21,10 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <style>
         body{
-            background:linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(224,186,94,1) 0%, rgba(114,199,169,1) 73%, rgba(0,212,255,1) 100%);
+            background:linear-gradient(90deg,
+                rgba(2,0,36,1) 0%,
+                rgba(224,186,94,1) 0%, rgba(114,199,169,1) 80%,
+                rgba(0,212,255,1) 100%);
         }
     </style>
 </head>
@@ -42,7 +45,34 @@
                         @guest
 
                         @else
-                            <a href="/DisplayQuestion" style="color:white;">My Question</a>
+                            <div style="display:flex; align-items: center; margin-right:5px;">
+                                <a href="/DisplayQuestion" style="color:white;">My Question</a>
+                            </div>
+                            @if (Session::get('userAdmin')==1)
+                                <li class="nav-item dropdown">
+                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                        {{ __("Manage") }} <span class="caret"></span>
+                                    </a>
+
+                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="{{ route('displayalluser') }}">
+                                            {{ __('Manage User') }}
+                                        </a>
+                                        <a class="dropdown-item" href="{{ route('displayallquestion') }}"
+                                           onclick="">
+                                            {{ __('Manage Question') }}
+                                        </a>
+                                        <a class="dropdown-item" href="{{ route('displayalltopic') }}"
+                                           onclick="">
+                                            {{ __('Manage Topic') }}
+                                        </a>
+
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            @csrf
+                                        </form>
+                                    </div>
+                                </li>
+                            @endif
                         @endguest
                     </ul>
 
