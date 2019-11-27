@@ -47,4 +47,8 @@ Route::get('/AddTopic','TopicController@addTopic');
 Route::post('/InsertTopic','TopicController@insertTopic')->name('inserttopic');
 
 Route::get('/DisplayProfile/{userid}','UserController@showProfile')->name('displayprofile');
+Route::get('/DisplayInbox/{userid}','UserController@showInbox')->name('displayinbox');
 Route::post('/SendMessage','MessageController@sendMessage')->name('sendmessage');
+Route::get('/DeleteMessage/{messageid}','MessageController@deleteMessage');
+
+Route::post('/Search','QuestionController@search');

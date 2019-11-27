@@ -52,7 +52,7 @@ class QuestionController extends Controller
                     ->join('topics','questions.topic_id','=','topics.topic_id')
                     ->select('questions.*')
                     ->where('questions.question_id','=',$questionid)
-                    ->get();
+                    ->paginate(10);
 
         $topics = Topic::all();
 
@@ -118,5 +118,20 @@ class QuestionController extends Controller
         $question->delete();
 
         return redirect('DisplayQuestion');
+    }
+
+    public function search(Request $r)
+    {
+        $keyword = $r->input('keyword');
+
+        $questions = \DB::table('questions')
+                    ->join('users','questions.id','=','users.id')
+                    ->join('topics','questions.topic_id','=','topics.topic_id')
+                    ->select('questions.*','users.name','topics.topic_name','users.photo')
+                    ->where('questions.question_title','like','%'.$keyword.'%')
+                    ->orWhere('users.name','like','%'.$keyword.'%')
+                    ->paginate(10);
+
+        return view('home',compact('questions',$questions));
     }
 }

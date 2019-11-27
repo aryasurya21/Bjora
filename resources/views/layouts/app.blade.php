@@ -48,8 +48,11 @@
                             <div style="display:flex; align-items: center; margin-right:5px;">
                                 <a href="/DisplayQuestion" style="color:white;">My Question</a>
                             </div>
+                            <div style="display:flex; align-items: center; margin-left:10px;">
+                                <a href="/DisplayInbox/{{Session::get('userId')}}" style="color:white;">Inbox</a>
+                            </div>
                             @if (Session::get('userAdmin')==1)
-                                <li class="nav-item dropdown">
+                                <li class="nav-item dropdown" style="margin-left:10px;">
                                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                         {{ __("Manage") }} <span class="caret"></span>
                                     </a>

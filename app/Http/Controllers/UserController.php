@@ -99,4 +99,16 @@ class UserController extends Controller
         $user = User::where('users.id','=',$userid)->first();
         return view('myprofile',compact('user',$user));
     }
+
+    public function showInbox($userid)
+    {
+        $messages = \DB::table('messages')
+                    ->join('users','users.id','=','messages.sender_id')
+                    ->join('user_message','messages.message_id','=','user_message.message_id')
+                    ->select('messages.*','users.*','user_message.*')
+                    ->where('user_message.receiver_id','=',$userid)
+                    ->paginate(10);
+
+        return view('myinbox',compact('messages',$messages));
+    }
 }

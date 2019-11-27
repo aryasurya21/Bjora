@@ -27,7 +27,7 @@
                     <div class="card-body">
                         <form method="POST" action="{{ route('sendmessage') }}">
                             @csrf
-
+                            <input type="text" value={{$user->id}} name="receiver" style="display:none !important"/>
                             <div class="form-group row">
                                 <div class="col">
                                     <textarea name="message_content" cols="72" rows="5"></textarea>
