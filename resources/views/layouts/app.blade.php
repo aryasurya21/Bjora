@@ -28,9 +28,9 @@
         }
     </style>
 </head>
-<body>
+<body onload="startTime()">
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm" style="display:flex; flex-direction: column; position: fixed; width:100%; z-index: 1;">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/home') }}">
                     {{ config('app.name', 'Bjora') }}
@@ -78,7 +78,10 @@
                             @endif
                         @endguest
                     </ul>
-
+                    <span style="color:white">
+                        {{ date('Y-m-d') }}
+                        <span id="currentTime"></span>
+                    </span>
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
@@ -116,10 +119,27 @@
                 </div>
             </div>
         </nav>
-
+        <br/><br/><br/>
         <main class="py-4">
             @yield('content')
         </main>
     </div>
 </body>
+<script>
+const startTime = () => {
+  let today = new Date();
+  let h = today.getHours();
+  let m = today.getMinutes();
+  let s = today.getSeconds();
+  m = checkTime(m);
+  s = checkTime(s);
+  document.getElementById('currentTime').innerHTML = h + ":" + m + ":" + s;
+  let t = setTimeout(startTime, 500);
+}
+
+const checkTime = (i) => {
+  if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+  return i;
+}
+</script>
 </html>
