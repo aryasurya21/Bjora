@@ -102,6 +102,9 @@ class UserController extends Controller
 
     public function showInbox($userid)
     {
+        if(\Session::get('userId')!=$userid){
+            return redirect('home');
+        }
         $messages = \DB::table('messages')
                     ->join('users','users.id','=','messages.sender_id')
                     ->join('user_message','messages.message_id','=','user_message.message_id')

@@ -18,37 +18,37 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::post('/home','QuestionController@insertQuestion')->name('insertquestion');
+Route::post('/home','QuestionController@insertQuestion')->name('insertquestion')->middleware('auth');
 
-Route::get('/DisplayQuestion','QuestionController@displayQuestion')->name('displayquestion');
-Route::get('/ListQuestion','QuestionController@displayAllQuestion')->name('displayallquestion');
-Route::get('/AddQuestion','QuestionController@addQuestion')->name('addquestion');
-Route::get('/UpdateQuestion/{questionid}','QuestionController@updateQuestion')->name('updatequestion');
-Route::post('/EditQustion','QuestionController@editQuestion')->name('editquestion');
-Route::get('/DeleteQuestion/{questionid}','QuestionController@deleteQuestion')->name('deletequestion');
-Route::get('/CloseQuestion/{questionid}','QuestionController@closeQuestion');
+Route::get('/DisplayQuestion','QuestionController@displayQuestion')->name('displayquestion')->middleware('auth');
+Route::get('/ListQuestion','QuestionController@displayAllQuestion')->name('displayallquestion')->middleware('auth','admin');
+Route::get('/AddQuestion','QuestionController@addQuestion')->name('addquestion')->middleware('auth');
+Route::get('/UpdateQuestion/{questionid}','QuestionController@updateQuestion')->name('updatequestion')->middleware('auth');
+Route::post('/EditQustion','QuestionController@editQuestion')->name('editquestion')->middleware('auth');
+Route::get('/DeleteQuestion/{questionid}','QuestionController@deleteQuestion')->name('deletequestion')->middleware('auth');
+Route::get('/CloseQuestion/{questionid}','QuestionController@closeQuestion')->middleware('auth','admin');
 
 Route::get('/DisplayAnswer/{questionid}','AnswerController@displayAnswer')->name('displayanswer');
-Route::post('/AddAnswer','AnswerController@addAnswer')->name('addanswer');
-Route::get('/DeleteAnswer/{answerid}','AnswerController@deleteAnswer');
+Route::post('/AddAnswer','AnswerController@addAnswer')->name('addanswer')->middleware('auth');
+Route::get('/DeleteAnswer/{answerid}','AnswerController@deleteAnswer')->middleware('auth');
 
-Route::get('/ListUser','UserController@displayAll')->name('displayalluser');
-Route::post('/InserUser','UserController@insertUser')->name('insertuser');
-Route::get('/AddUser','UserController@addUser');
-Route::post('/EditUser','UserController@editUser')->name('edituser');
-Route::get('/UpdateUser/{userid}','UserController@updateUser')->name('updateuser');
-Route::get('/DeleteUser/{userid}','UserController@deleteUser')->name('deleteuser');
+Route::get('/ListUser','UserController@displayAll')->name('displayalluser')->middleware('auth','admin');
+Route::post('/InsertUser','UserController@insertUser')->name('insertuser')->middleware('auth','admin');
+Route::get('/AddUser','UserController@addUser')->middleware('auth','admin');
+Route::post('/EditUser','UserController@editUser')->name('edituser')->middleware('auth','admin');
+Route::get('/UpdateUser/{userid}','UserController@updateUser')->name('updateuser')->middleware('auth','admin');
+Route::get('/DeleteUser/{userid}','UserController@deleteUser')->name('deleteuser')->middleware('auth','admin');
 
-Route::get('/ListTopic','TopicController@displayAll')->name('displayalltopic');
-Route::get('/UpdateTopic/{topicid}','TopicController@updateTopic')->name('updatetopic');
-Route::post('/EditTopic','TopicController@editTopic')->name('edittopic');
-Route::get('/DeleteTopic/{topicid}','TopicController@deleteTopic')->name('deletetopic');
-Route::get('/AddTopic','TopicController@addTopic');
-Route::post('/InsertTopic','TopicController@insertTopic')->name('inserttopic');
+Route::get('/ListTopic','TopicController@displayAll')->name('displayalltopic')->middleware('auth')->middleware('auth','admin');
+Route::get('/UpdateTopic/{topicid}','TopicController@updateTopic')->name('updatetopic')->middleware('auth','admin');
+Route::post('/EditTopic','TopicController@editTopic')->name('edittopic')->middleware('auth','admin');
+Route::get('/DeleteTopic/{topicid}','TopicController@deleteTopic')->name('deletetopic')->middleware('auth','admin');
+Route::get('/AddTopic','TopicController@addTopic')->middleware('auth','admin');
+Route::post('/InsertTopic','TopicController@insertTopic')->name('inserttopic')->middleware('auth','admin');
 
-Route::get('/DisplayProfile/{userid}','UserController@showProfile')->name('displayprofile');
-Route::get('/DisplayInbox/{userid}','UserController@showInbox')->name('displayinbox');
-Route::post('/SendMessage','MessageController@sendMessage')->name('sendmessage');
-Route::get('/DeleteMessage/{messageid}','MessageController@deleteMessage');
+Route::get('/DisplayProfile/{userid}','UserController@showProfile')->name('displayprofile')->middleware('auth');
+Route::get('/DisplayInbox/{userid}','UserController@showInbox')->name('displayinbox')->middleware('auth');
+Route::post('/SendMessage','MessageController@sendMessage')->name('sendmessage')->middleware('auth');
+Route::get('/DeleteMessage/{messageid}','MessageController@deleteMessage')->middleware('auth');
 
 Route::post('/Search','QuestionController@search');

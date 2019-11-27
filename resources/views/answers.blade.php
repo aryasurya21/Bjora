@@ -10,8 +10,15 @@
                 </div>
             @endif
                 <div class="card">
-                    <div class="card-header">
+                    <div class="card-header" style="display:flex; justify-content: space-between;">
                         <div>{{ $question[0]->topic_name }}</div>
+                        <div>
+                        @if ($question[0]->question_status == 1)
+                            <span class="btn btn-success">Open</span>
+                        @else
+                            <span class="btn btn-warning">Closed</span>
+                        @endif
+                        </div>
                     </div>
                     <div class="card-body" style="display:flex;">
                         <div style="display:flex;">
