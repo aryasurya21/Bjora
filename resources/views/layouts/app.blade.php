@@ -123,6 +123,9 @@
         <main class="py-4">
             @yield('content')
         </main>
+        <footer class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm" style="display:flex; color:white; justify-content:center; height:60px;">
+            &copy; Bjora 2019
+        </footer>
     </div>
 </body>
 <script>
