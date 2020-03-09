@@ -1,5 +1,5 @@
 # Bjora
-Web Programming Lab Assignment.
+Kaskus-Like Web Application.
 
 Bjora is a forum website where users could post what they are thinking, and could see other users' post and comment on their post.
 Bjora has 3 types of users, which is guests, logged in and admin users, each with different capabilities throughout the page.
